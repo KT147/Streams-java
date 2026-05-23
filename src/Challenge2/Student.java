@@ -35,6 +35,10 @@ public class Student {
         addCourse(newCourse, LocalDate.now());
     }
 
+    public long getStudentId() {
+        return studentId;
+    }
+
     public void addCourse(Course newCourse, LocalDate enrollDate) {
         CourseEngagement currentCourse = new CourseEngagement(newCourse, enrollDate, "Enrollment");
         engagementMap.put(newCourse.getCourseCode(), currentCourse);

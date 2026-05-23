@@ -1,6 +1,7 @@
 package Challenge2;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,9 +13,9 @@ public class Main {
 
         Course pymc = new Course("PYMC", "Python");
         Course jmc = new Course("JC", "Java");
-//        Student tim = new Student("AU", 2019, 30, "M", true, jmc, pymc);
-//
-//        System.out.println(tim);
+        Student tim = new Student("AU", 2019, 30, "M", true, jmc, pymc);
+
+        System.out.println(tim);
 
 
         List<Student> students = Stream.generate(() -> Student.getRandomStudent(jmc, pymc))
@@ -48,6 +49,7 @@ public class Main {
                 .map(Student::getCountryCode)
                 //ei korda samu
                 .distinct()
+                .sorted()
                 .toList();
 
         boolean isActive = students.stream()
@@ -70,6 +72,23 @@ public class Main {
         System.out.println("Students are from: " + studentCountries);
         System.out.println("isActive= " + isActive);
         fiveStudents.forEach(System.out::println);
+
+
+//        Student[] students2 = new Student[1000];
+//        var longTimeLearners = Arrays.stream(students2)
+//                .filter(s -> (s.getAge() - s.getAgeEnrolled() >= 7) &&
+//                        (s.getMonthsSinceActive() < 12))
+//                .filter(s -> !s.hasProgrammingExperience())
+//                .limit(5)
+//                .toArray(Student[]::new);
+//        var learners = Arrays.stream(students2)
+//                .filter(s -> (s.getAge() - s.getAgeEnrolled() >= 7) &&
+//                        (s.getMonthsSinceActive() < 12))
+//                .filter(s -> !s.hasProgrammingExperience())
+//                .limit(5)
+//                .collect(Collectors.toList());
+//
+//        Collections.shuffle(learners);
 
 
     }
