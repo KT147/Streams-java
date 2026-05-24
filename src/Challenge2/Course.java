@@ -26,6 +26,12 @@ public class Course {
         this.lectureCount = 40;
     }
 
+    public Course(String courseCode, String title, int lectureCount) {
+        this.courseCode = courseCode;
+        this.title = title;
+        this.lectureCount = lectureCount;
+    }
+
     @Override
     public String toString() {
         return "%s %s".formatted(courseCode,title);
