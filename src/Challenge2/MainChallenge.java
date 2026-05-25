@@ -27,7 +27,7 @@ public class MainChallenge {
 
         Set<Student> threeQuartersComplete = students.stream()
                 .filter(s -> s.getPercentComplete("JMC") >= javaPercentage * 1.25)
-                .filter(s -> s.getMonthsSinceActive() == 0)
+                .filter(s -> s.getMonthsSinceActive("JMC") == 0)
                 .limit(10)
                 .collect(() -> new TreeSet<>(Comparator.comparing(
                         Student::getYearEnrolled)), TreeSet::add, TreeSet::addAll);
