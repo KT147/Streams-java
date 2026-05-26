@@ -1,9 +1,7 @@
 package Challenge2;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class Student {
 
@@ -111,9 +109,24 @@ public class Student {
         return data[random.nextInt(data.length)];
     }
 
+    private static Course[] getRandomCourses(Course... courses) {
+
+        List<Course> courseList = new ArrayList<>(Arrays.asList(courses));
+
+        Collections.shuffle(courseList);
+
+        int courseCount = random.nextInt(1, courseList.size() + 1);
+
+        List<Course> selectedCourses = courseList.subList(0, courseCount);
+
+        return selectedCourses.toArray(new Course[0]);
+    }
+
     public static Student getRandomStudent(Course... courses) {
 
         int maxYear = LocalDate.now().getYear() + 1;
+
+        Course[] randomCourses = getRandomCourses(courses);
 
         Student student = new Student(
                 getRandomVal("AU", "CA", "CN", "IN"),
@@ -121,9 +134,9 @@ public class Student {
                 random.nextInt(18, 90),
                 getRandomVal("M", "F"),
                 random.nextBoolean(),
-                courses);
+                randomCourses);
 
-        for (Course c : courses) {
+        for (Course c : randomCourses) {
             int lecture = random.nextInt(30, c.getLectureCount());
             int year = random.nextInt(student.getYearEnrolled(), maxYear);
             int month = random.nextInt(1, 13);
@@ -137,6 +150,7 @@ public class Student {
         return student;
 
     }
+
 
 
     @Override
